@@ -1,0 +1,26 @@
+.listItem {
+	width: 100%;
+	padding: 1rem;
+	justify-content: space-between;
+	border-radius: 15px;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	margin-bottom: 0.5rem;
+}
+
+.listItem:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: clip;
+	max-width: 23%;
+	display: inline-block;
+}
+
+.span {
+	width: 23%;
+}
