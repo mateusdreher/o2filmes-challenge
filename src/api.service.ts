@@ -3,7 +3,7 @@ interface Repo {
 	owner: string;
 	name: string;
 	language: string;
-	score: number;
+	stars: number;
 }
 
 export class ApiService {
@@ -24,7 +24,7 @@ export class ApiService {
 		const data = await result.json();
 
 		return data.items.map((item: any) => {
-			return {id: item.id, owner: item.owner, name: item.name, language: item.language, score: item.score}
+			return {entryJson: item, id: item.id, owner: item.owner, name: item.name, language: item.language, stars: item.stargazers_count, url: item.html_url, description: item.description, watchers: item.watchers, forks: item.forks, issues: item.open_issues}
 		})
 	}
 }
