@@ -1,46 +1,71 @@
-# Getting Started with Create React App
+# Public Repositorie Github Search Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple frontend application that allows you to search for repositories using the Github API. It's built with React and designed to be easy to set up and use.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+Before you can use this application, you need to obtain a GitHub API authorization token. Here's how you can get one:
 
-### `npm start`
+1. **Sign In to GitHub:**
+    - If you don't already have a GitHub account, you'll need to create one. You can sign up for a free GitHub account at [GitHub Signup](https://github.com/join).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. **Navigate to Developer Settings:**
+    - Once you're logged in to your GitHub account, click on your profile picture in the top right corner.
+    - From the dropdown menu, select "Settings."
+    - In the left sidebar, click on "Developer settings."
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+3. **Access Personal Access Tokens:**
+    - Under the "Access tokens" section in the Developer settings, click "Personal access tokens."
 
-### `npm test`
+4. **Generate a New Token:**
+    - Click the "Generate token" button to create a new personal access token.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. **Configure Token Permissions:**
+    - Give your token a descriptive name.
+    - Select the permissions (scopes) you need for your token. In most cases, for read-only access to public repositories, you can select "public_repo."
+    - If your application requires additional permissions, you can select those as well.
 
-### `npm run build`
+6. **Generate Token:**
+    - After configuring the settings, scroll down and click the "Generate token" button.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+7. **Copy and Save Token:**
+    - Once the token is generated, GitHub will display it. Make sure to copy this token and save it in a secure location. You won't be able to see it again.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Now you have an authentication token that can be used with the application to access GitHub's API. Be cautious with this token and avoid sharing it publicly, as it provides access to your GitHub account.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Clone this repository to your local machine.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```
+   git clone https://github.com/mateusdreher/o2filmes-challenge
+   cd o2filmes-challenge
+	```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. Create a .env file in the root of the application and put your github token in it as follows:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+	```
+	REACT_APP_GITHUB_TOKEN=YOUR_GITHUB_TOKEN
+	```
+	You can use the provided .env.example file as a template.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Install the project dependencies.
+	
+	```
+	npm install
+	```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Usage
+
+Once you have set up your Giphy API key and installed the dependencies, you can start the application by running:
+
+	```bash
+	npm start
+	```
+
+
+The application will start, and you can access it in your web browser at http://localhost:3000.
+
+Enter your search query in the input field and press Enter to see repositories related to your query.
