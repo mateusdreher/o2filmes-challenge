@@ -1,0 +1,24 @@
+.listHeader {
+	width: 80%;
+	margin-left: 10%;
+	padding: 1rem;
+	justify-content: space-between;
+	border-radius: 15px;
+	background-color: #cccccc;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	margin-bottom: 0.5rem;
+	font-weight: bold; /* Adicione negrito ao texto do cabeçalho */
+  }
+  
+  .name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: clip;
+	max-width: 23%;
+	display: inline-block;
+  }
+  
+  .span {
+	width: 23%;
+  }
+  

@@ -4,7 +4,7 @@ import css from './Modal.module.css';
 import { IRepo } from '../../services/repo.interface';
 import React from 'react';
 import {Tooltip} from '../Tooltip/Tooltip';
-import tooltipStyles from '../Tolltip/Tooltip.module.css';
+import tooltipStyles from '../Tooltip/Tooltip.module.css';
 
 interface Props {
 	onClose(): void;

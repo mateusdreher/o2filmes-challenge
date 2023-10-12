@@ -5,6 +5,7 @@ import css from './List.module.css';
 import { useApi } from '../../contexts/ApiContext';
 import React from 'react';
 import { IRepo } from '../../services/repo.interface';
+import { ListHeader } from '../ListHeader/ListHeader';
 interface Props {
   onSelectItem(id: number): void;
 }
@@ -34,7 +35,8 @@ export function List(props: Props) {
   
 
 	return (
-		<>     
+		<>  
+			<ListHeader />   
 			{repoData && (
 				<div className={css.list}>
 					{displayedRepoData.map((repo: IRepo) => (
