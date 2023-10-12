@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import {SearchBar} from './SearchBar'; // Import the component you want to test
+import {SearchBar} from './SearchBar';
 
 test('renders SearchBar and calls the onSearch function when Enter key is pressed', () => {
   const onSearchMock = jest.fn();
