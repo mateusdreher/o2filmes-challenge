@@ -61,7 +61,7 @@ Now you have an authentication token that can be used with the application to ac
 
 Once you have set up your Giphy API key and installed the dependencies, you can start the application by running:
 
-	```bash
+	```
 	npm start
 	```
 
