@@ -28,3 +28,15 @@
 	background-color: #b9bbbe;
   }
   
+  .itemsPerPageSelect {
+	border: 1px solid #ccc;
+	border-radius: 5px; 
+	padding: 8px; 
+  }
+  .itemsPerPageSelect > option {
+	padding: 8px;
+  }
+  .itemsPerPageSelect:focus {
+	border-color: #464441;
+	outline: none;
+  }

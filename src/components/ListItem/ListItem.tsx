@@ -1,22 +1,36 @@
-import css from './ListItem.module.css'
-
+import { useApi } from '../../contexts/ApiContext';
+import { IRepo } from '../../services/repo.interface';
+import css from './ListItem.module.css';
+import React, { useEffect, useState } from 'react';
 interface Props {
 	id: number;
-	owner: string;
-	name: string;
-	language: string;
-	stars: number;
 	onClick(id: number): void;
 }
 
 export function ListItem (props: Props) {
-	return (
+	const {repoData} = useApi();
+	const [repo, setRepo] = useState<IRepo>();
 
-		<div className={`d-flex ${css.listItem}`} onClick={() => props.onClick(props.id)}>
-			<span className={css.span}>{props.owner}</span>
-			<span className={`${css.span} ${css.name}`}>{props.name}</span>
-			<span className={css.span}>{props.language}</span>
-			<span className={css.span}>{props.stars}</span>
-		</div>
-	)
+	useEffect(() => {
+		const repo = repoData.find(item => item.id === props.id);
+
+		if(!repo) return;
+
+		setRepo(repo);
+	}, []);
+
+
+	return (
+		<>
+			{repo && (
+				<div id={props.id.toString()} className={`d-flex ${css.listItem}`} onClick={() => props.onClick(props.id)}>
+					<span className={css.span}>{repo.owner.login}</span>
+					<span className={`${css.span} ${css.name}`}>{repo.name}</span>
+					<span className={css.span}>{repo.language}</span>
+					<span className={css.span}>{repo.stars}</span>
+				</div>
+			)}
+		</>	
+		
+	);
 }

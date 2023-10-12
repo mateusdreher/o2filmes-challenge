@@ -1,35 +1,41 @@
+import { useEffect, useState } from 'react';
+import { useApi } from '../../contexts/ApiContext';
 import css from './Modal.module.css';
+import { IRepo } from '../../services/repo.interface';
+import React from 'react';
+import {Tooltip} from '../Tolltip/Tolltip';
+import tooltipStyles from '../Tolltip/Tooltip.module.css';
 
 interface Props {
-	showModal: boolean;
 	onClose(): void;
-	repoName: string;
-	username: string;
-	url: string;
-	description: string;
-	watchers: number;
-	forks: number;
-	language: string;
-	issues: number;
-	stars: number;
-	entryJson: any;
+	id: number;
+	showModal: boolean
 }
 
 
 
 export function Modal(props: Props) {
-	console.log({props})
-	const { showModal, onClose } = props;
+	const { showModal, onClose, id } = props;
 	const modalClassName = showModal ? `${css.popup} ${css.show}` : css.popup;
+	const {repoData} = useApi();
+	const [repo, setRepo] = useState<IRepo>();
 
-	function handleBgClick(event: any) {
-		if (event.target.classList.contains(css.popup)) {
-			props.onClose();		
+	useEffect(() => {
+		const repo = repoData.find(item => item.id === id);
+		setRepo(repo);
+	}, []);
+
+	function handleBgClick(event: React.MouseEvent<HTMLElement>) {
+		const target = event.target as Element;
+		if (target.classList.contains(css.popup)) {
+			onClose();		
 		}
 	}
 
 	function handleDownloadJson() {
-		const jsonContent = JSON.stringify(props.entryJson, null, 2);
+		if(!repo) return;
+
+		const jsonContent = JSON.stringify(repo, null, 2);
 		
 		const blob = new Blob([jsonContent], { type: 'application/json' });
 		
@@ -37,44 +43,46 @@ export function Modal(props: Props) {
 		
 		const a = document.createElement('a');
 		a.href = url;
-		a.download =  `${props.username} - ${props.repoName}.json`;
+		a.download =  `${repo.owner.login} - ${repo.name}.json`;
 		
 		a.click();
 		
 		window.URL.revokeObjectURL(url);
-	  }
-	  
+	}
+ 
+ 
+	if(!repo) return <></>;
 
 	return (
 		<div className={modalClassName} onClick={handleBgClick}>
 			<div className={css.popup__content}>
 				<div className={css.title}>
-					<a href={props.url} target='_blank' rel="noreferrer">
+					<a href={repo.url} target='_blank' rel="noreferrer">
 						<i className="fa fa-2x fa-brands fa-github"></i>
 					</a>
-					<h2 className='mr-left-10'>{props.repoName}</h2>
+					<h2 className='mr-left-10'>{repo.name}</h2>
 				</div>
-				<span><i>{props.username}</i></span>
+				<span><i>{repo.owner.login}</i></span>
 				<p className={css.popup__text}>
-				{props.description}
+					{repo.description}
 				</p>
 				<div className={css.infos}>
-					<span >
-						<i className="fa fa-solid fa-eye"></i>
-						<span className="mr-left-10">{props.watchers}</span>
-					</span>
-					<span>
-						<i className="fa fa-solid fa-code-fork"></i>
-						<span className="mr-left-10">{props.forks}</span>
-					</span>
-					<span>
-						<i className="fa fa-solid fa-star"></i>
-						<span className="mr-left-10"> {props.stars}</span>
-					</span>
-					<span>
-						<i className="fa fa-solid fa-bug"></i>
-						<span className="mr-left-10">{props.issues}</span>
-					</span>
+					<Tooltip content="Watchers">
+						<i className={`fa fa-solid fa-eye ${tooltipStyles.trigger}`}></i>
+						<span className="mr-left-10">{repo.watchers}</span>
+					</Tooltip>
+					<Tooltip content='Forks'>
+						<i className={`fa fa-solid fa-code-fork ${tooltipStyles.trigger}`}></i>
+						<span className="mr-left-10">{repo.forks}</span>
+					</Tooltip>
+					<Tooltip content='Stars'>
+						<i className={`fa fa-solid fa-star ${tooltipStyles.trigger}`}></i>
+						<span className="mr-left-10"> {repo.stars}</span>
+					</Tooltip>
+					<Tooltip content='Opended issues'>
+						<i className={`fa fa-solid fa-bug ${tooltipStyles.trigger}`}></i>
+						<span className="mr-left-10">{repo.issues}</span>
+					</Tooltip>
 				</div>
 				<p className='mr-top-40'>Você pode baixar as informações completas desse repositório:</p>
 				<button className={css.buttonDownload} onClick={handleDownloadJson}>Baixar JSON</button>

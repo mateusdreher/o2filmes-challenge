@@ -1,0 +1,24 @@
+.tooltipContainer {
+	position: relative;
+	display: inline-block; 
+  }
+  
+  .tooltip {
+	width: max-content;
+	font-size: small;
+	position: absolute;
+	background: #333;
+	color: #fff;
+	padding: 5px;
+	border-radius: 4px;
+	z-index: 1;
+	display: none;
+	top: -180%;
+	left: 50%;
+	transform: translateX(-50%);
+  }
+  
+  .tooltipContainer:hover .tooltip {
+	display: block;
+  }
+  

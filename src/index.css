@@ -16,12 +16,27 @@ code {
 
 .d-flex {
   display: flex;
+  align-items: center;
 }
 
 .mr-left-10 {
   margin-left: 10px;
 }
+.mr-right-10 {
+  margin-right: 10px;
+}
 
 .mr-top-40 {
   margin-top: 40px;
+}
+
+.noResults {
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: center;
+}
+.noTerm {
+	font-size: 1rem;
+	font-style: italic;
+	text-align: center;
 }
