@@ -3,7 +3,7 @@ import { useApi } from '../../contexts/ApiContext';
 import css from './Modal.module.css';
 import { IRepo } from '../../services/repo.interface';
 import React from 'react';
-import {Tooltip} from '../Tolltip/Tolltip';
+import {Tooltip} from '../Tooltip/Tooltip';
 import tooltipStyles from '../Tolltip/Tooltip.module.css';
 
 interface Props {
